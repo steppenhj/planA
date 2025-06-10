@@ -1,263 +1,237 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>로또 번호 추천 서비스 개발 제안서</title>
-  <meta name="description" content="실제 1등 당첨자 기반 로또 번호 추천 유료 서비스 개발 및 마케팅, 4주 완성 프로젝트 일정 및 맞춤 제안">
-  <link href="https://fonts.googleapis.com/css?family=Pretendard:400,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="제1081회 1등 당첨자가 10년간 연구한 추천번호를 받아보세요. 신뢰감 있는 UI로 2025년 스타일을 경험하세요.">
+  <title>로또스토리 | 데이터 기반 로또 추천</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #1b2236;
-      --gold: #f6c452;
-      --gold-deep: #e5ac00;
-      --white: #fff;
-      --ivory: #f7f6f2;
-      --gray: #7b7c82;
-      --bluegray: #2a3043;
-      --brandred: #e94b4b;
+      --primary: #ff4a5b;
+      --primary-light: #ff717f;
+      --surface: #ffffff;
+      --background: #f2f3f5;
+      --text: #333333;
+      --text-secondary: #555555;
+      --radius-base: 12px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.05);
+      --transition: 0.3s;
     }
-    body {
-      font-family: 'Pretendard', 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
-      background: linear-gradient(135deg, var(--ivory) 0%, var(--white) 100%);
-      margin: 0;
-      color: var(--navy);
-    }
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      background: var(--white);
-      box-shadow: 0 6px 32px 0 rgba(27,34,54,0.13);
-      border-radius: 24px;
-      margin-top: 44px;
-      margin-bottom: 40px;
-      padding: 38px 30px 46px 30px;
-      border: 2px solid var(--gold);
-    }
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: -1px;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--gold-deep);
-      text-align: center;
-      margin-bottom: 27px;
-      letter-spacing: -0.2px;
-    }
-    hr {
-      border: none;
-      border-bottom: 1.7px solid var(--gold);
-      margin: 34px 0 26px 0;
-    }
-    section {
-      margin-bottom: 38px;
-    }
-    h2 {
-      color: var(--gold-deep);
-      font-size: 1.29rem;
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-weight: 700;
-      letter-spacing: -0.4px;
-    }
-    ul, ol {
-      padding-left: 1.18em;
-      line-height: 1.75;
-    }
-    li {
-      margin-bottom: 7px;
-    }
-    .keybox {
-      background: linear-gradient(90deg, #f9e5bc 0%, #f7d389 100%);
-      border-left: 6px solid var(--gold);
-      padding: 17px 20px;
-      border-radius: 10px;
-      margin-bottom: 23px;
-      font-size: 1.05rem;
-      color: var(--navy);
-      font-weight: 500;
-      box-shadow: 0 3px 12px 0 rgba(230,180,44,0.07);
-    }
-    .plan-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 10px;
-    }
-    .plan-table th, .plan-table td {
-      border: 1px solid #ece6d7;
-      padding: 12px 7px;
-      text-align: left;
-      font-size: 1.04rem;
-    }
-    .plan-table th {
-      background: #fdf5e2;
-      color: var(--bluegray);
-      font-weight: 700;
-    }
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
-      justify-content: center;
-    }
-    .brand-logo img {
-      width: 52px; height: 52px; border-radius: 14px; border: 2.2px solid var(--gold);
-      background: #fffef6;
-      box-shadow: 0 3px 13px 0 rgba(210,160,40,0.10);
-    }
-    .brand-logo .brand-title {
-      font-size: 1.22rem;
-      color: var(--gold-deep);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .contact {
-      font-size: 1.09rem;
-      color: var(--bluegray);
-      margin-top: 19px;
-      text-align: center;
-    }
-    .footer {
-      font-size: 0.97rem;
-      color: #c5c5c5;
-      margin-top: 37px;
-      text-align: center;
-    }
-    a {
-      color: var(--navy);
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-    a:hover {
-      color: var(--gold-deep);
-    }
-    @media (max-width: 620px) {
-      .container {padding: 8vw 3vw 11vw 3vw; margin-top: 4vw;}
-      h1 {font-size: 1.22rem;}
-      .plan-table th, .plan-table td {font-size: 0.97rem;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Pretendard', sans-serif; background: var(--background); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    header { position: sticky; top: 0; backdrop-filter: blur(10px); background: rgba(255,255,255,0.8); box-shadow: var(--shadow); z-index: 100; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: relative; }
+    .logo { font-size: 1.75rem; font-weight: 800; color: var(--primary); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--primary); transition: transform var(--transition); }
+    .nav ul { display: flex; gap: 1.5rem; }
+    .nav li { list-style: none; }
+    .nav a { font-weight: 500; padding: 0.5rem; transition: color var(--transition); }
+    .nav a:hover { color: var(--primary); }
+    .hero { position: relative; background: url('hero-bg.jpg') center/cover no-repeat; min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7)); }
+    .hero .content { position: relative; max-width: 720px; padding: 2rem; }
+    .hero h1 { font-size: 2.75rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+    .hero p { font-size: 1.125rem; margin-bottom: 2rem; color: #f0f0f0; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; font-weight: 600; border-radius: var(--radius-base); transition: background var(--transition), transform var(--transition); text-align: center; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); }
+    section { padding: 4rem 0; }
+    .section-title { font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: 2.5rem; position: relative; }
+    .section-title::after { content: ''; width: 60px; height: 4px; background: var(--primary); display: block; margin: 0.5rem auto 0; border-radius: 2px; }
+    .grid { display: grid; gap: 1.5rem; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
+    .card { background: var(--surface); border-radius: var(--radius-base); box-shadow: var(--shadow); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .card-body { padding: 1.5rem; }
+    .card-body h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--primary); }
+    .card-body p { color: var(--text-secondary); font-size: 0.95rem; }
+    footer { background: var(--surface); padding: 3rem 0; color: var(--text-secondary); text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .footer-links a { font-size: 0.9rem; }
+    /* MOBILE OPTIMIZATION & HAMBURGER POSITION */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.8rem;
+        padding: 0.5rem;
+      }
+      .nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--surface); padding: 1rem 0; box-shadow: var(--shadow); }
+      .nav.open ul { display: flex; }
+      .nav ul li { text-align: center; margin: 0.5rem 0; }
+      .container { width: 95%; }
+      .hero { min-height: 50vh; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; margin-bottom: 1.5rem; }
+      .btn { width: 100%; }
+      section { padding: 2rem 0; }
+      .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .card-body { padding: 1rem; }
+      .card-body h3 { font-size: 1.1rem; }
+      .card-body p { font-size: 0.9rem; }
+      footer { padding: 2rem 0; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <div class="brand-logo">
-      <!-- 실제 로고가 있으면 아래 img src에 파일 경로 넣으세요 -->
-      <img src="https://cdn-icons-png.flaticon.com/512/9057/9057689.png" alt="로고">
-      <div class="brand-title">로또 1등 당첨자 추천 플랫폼</div>
+  <header>
+    <div class="container nav">
+      <div class="logo">로또스토리</div>
+      <button class="nav-toggle" aria-label="메뉴 열기">☰</button>
+      <nav>
+        <ul>
+          <li><a href="#story">스토리</a></li>
+          <li><a href="#hope">희망</a></li>
+          <li><a href="#service">서비스</a></li>
+          <li><a href="#purchase">결제</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <h1>로또 번호 추천 서비스 개발 제안서</h1>
-    <div class="subtitle">
-      실제 1등 당첨자 기반, 신뢰의 유료 추천 서비스<br>
-      4주 완성 개발 플랜 & 맞춤 제안
+  <section class="hero">
+    <div class="content">
+      <h1>10년 연구로 완성된 신뢰도 높은 추천 번호</h1>
+      <p>데이터 기반 알고리즘으로 1등 당첨자의 비법을 공유합니다.</p>
+      <a href="#story" class="btn btn-primary">자세히 보기</a>
     </div>
+  </section>
 
-    <hr />
-
-    <section>
-      <h2>사업 개요 및 차별화</h2>
-      <div class="keybox">
-        <b>실제 1등 당첨자</b>가 직접 운영하는 국내 최초<br>
-        신뢰 기반 유료 로또 번호 추천 서비스!<br>
-        <br>
-        <b>데이터 분석 + 감성 마케팅 + 스토리텔링</b>을 결합하여<br>
-        단순한 추천을 넘어, 고객에게 희망과 실질적 신뢰를 전달합니다.
+  <section id="story" class="container">
+    <h2 class="section-title">운영자 스토리</h2>
+    <div class="grid grid-2">
+      <div>
+        <img src="founder.jpg" alt="운영자 사진" style="border-radius:50%; max-width:240px; margin:0 auto; display:block;">
       </div>
-      <ul>
-        <li>1등 당첨 경험과 번호 조합 노하우 반영</li>
-        <li>고객 감성을 자극하는 실제 스토리 기반 콘텐츠</li>
-        <li>정확한 데이터 관리 및 맞춤형 후기/마케팅 연계</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>핵심 제공 서비스</h2>
-      <ul>
-        <li><b>회원가입 없는 간편결제</b> – 40~60대도 직관적 사용</li>
-        <li><b>추천 번호 지급/관리</b> – 자동/수동, 문자 발송 포함</li>
-        <li><b>당첨 확인 시스템</b> – 추천번호 vs 실제 당첨번호 자동 비교, 관리자·고객 모두 즉시 확인</li>
-        <li><b>인터뷰 등 당첨자 마케팅 활용 프로세스</b></li>
-        <li><b>메인 1등 인증 섹션</b> – 방문자 신뢰 확보</li>
-        <li><b>유료 멤버십(월 정액/단건)</b> – 구독 기반, 자동 결제 지원</li>
-        <li><b>모바일/PC 반응형, SEO 최적화, 후기·공지·고객센터(채팅형)</b></li>
-        <li><b>로고/브랜딩, 썸네일, 영상 등 마케팅 콘텐츠 포함</b></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>4주 개발 및 디자인 일정</h2>
-      <table class="plan-table">
-        <tr>
-          <th>주차</th>
-          <th>주요 내용</th>
-        </tr>
-        <tr>
-          <td>1주차<br><span style="font-weight:normal;">(기획&설계)</span></td>
-          <td>
-            - 요구사항/기획 최종 확정 및 DB설계<br>
-            - 번호 지급 방식/유료 멤버십 구조 논의<br>
-            - <b>로고/디자인 시안 초안 제작</b><br>
-            - 도메인, 호스팅, 결제 연동 준비
-          </td>
-        </tr>
-        <tr>
-          <td>2주차<br><span style="font-weight:normal;">(핵심 기능 I)</span></td>
-          <td>
-            - 메인/추천번호/결제 연동 개발<br>
-            - 추천번호 추출·문자발송 기능<br>
-            - <b>로고 디자인 확정</b><br>
-            - 관리자 페이지, 회원관리/번호관리 기본 구축
-          </td>
-        </tr>
-        <tr>
-          <td>3주차<br><span style="font-weight:normal;">(핵심 기능 II & 테스트)</span></td>
-          <td>
-            - 마이페이지, 후기·공지·고객센터 구현<br>
-            - 당첨 자동 확인/알림 시스템 완성<br>
-            - 모바일/SEO 최적화, 통합테스트
-          </td>
-        </tr>
-        <tr>
-          <td>4주차<br><span style="font-weight:normal;">(최종 점검&오픈)</span></td>
-          <td>
-            - 메인 1등 인증 섹션 및 디자인 보완<br>
-            - 유튜브 쇼츠/마케팅 콘텐츠 제작<br>
-            - 운영자 매뉴얼 전달, 오픈 준비<br>
-            - 서비스 정식 오픈
-          </td>
-        </tr>
-      </table>
-    </section>
-
-    <section>
-      <h2>서비스/시스템 강점</h2>
-      <ul>
-        <li>실제 1등 당첨자 인증 – <b>메인 노출</b>로 신뢰 강화</li>
-        <li>간편결제/회원가입 없는 UX, 중장년층 최적화 UI</li>
-        <li>당첨자 자동 감지·관리·마케팅 연계까지 올인원 시스템</li>
-        <li>모든 소스, 로고, 영상 등 <b>100% 원본 제공</b></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>문의 및 연락처</h2>
-      <div class="contact">
-        <b>PM / 개발자: 박해진</b><br>
-        Email: <a href="mailto:hermann8hesse@gmail.com">hermann8hesse@gmail.com</a>
+      <div>
+        <p>"지난 10년간 당첨 번호 데이터를 통계적으로 분석하며, 운이 아닌 과학으로 로또 추천 알고리즘을 완성했습니다."</p>
+        <p>이제 그 노하우를 투명하고 진정성 있게 여러분께 제공하려 합니다.</p>
       </div>
-    </section>
-
-    <div class="footer">
-      &copy; 2025. 로또 번호 추천 서비스 제안서 by 박해진. All rights reserved.
     </div>
-  </div>
+  </section>
+
+  <section id="hope">
+    <div class="container">
+      <h2 class="section-title">진정성 있는 희망</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-body">
+            <h3>고객 사연 공유</h3>
+            <p>매주 업데이트되는 생생한 당첨 후기와 이야기들.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>성공 사례 인터뷰</h3>
+            <p>실제 당첨자와의 인터뷰로 신뢰도를 높입니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>응원 메시지</h3>
+            <p>구매 시마다 응원의 메시지를 전해드립니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>커뮤니티 이벤트</h3>
+            <p>소규모 모임과 이벤트 정보를 제공합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="service">
+    <div class="container">
+      <h2 class="section-title">서비스 탐색</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-body">
+            <h3>추천번호 확인</h3>
+            <p>정밀 분석으로 생성된 신뢰 높은 번호 제공합니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>투명한 데이터 공개</h3>
+            <p>추천 과정과 결과를 완벽히 공개합니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>사용자 리뷰</h3>
+            <p>실사용자의 솔직한 리뷰와 경험을 확인하세요.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>알림 설정</h3>
+            <p>당첨 결과 및 다음 회차 알림을 제공합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="purchase" class="container" style="text-align:center;">
+    <h2 class="section-title">결제 안내</h2>
+    <p style="max-width:600px; margin:1rem auto 2rem; color: var(--text-secondary);">안전하고 간편한 결제를 다양한 플랫폼에서 지원합니다.</p>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(100px,1fr)); gap:1rem; justify-items:center;">
+      <img src="kakaopay.png" alt="카카오페이" style="height:48px;">
+      <img src="naverpay.png" alt="네이버페이" style="height:48px;">
+      <img src="toss.png" alt="토스" style="height:48px;">
+    </div>
+    <a href="purchase.html" class="btn btn-primary" style="margin-top:2rem;">지금 결제하기</a>
+  </section>
+
+  <section id="faq" class="container">
+    <h2 class="section-title">자주 묻는 질문</h2>
+    <div class="grid grid-2">
+      <div>
+        <h3>Q. 추천번호는 어떻게 생성되나요?</h3>
+        <p>A. 10년간 데이터 분석으로 패턴화된 알고리즘을 기반으로 생성합니다.</p>
+      </div>
+      <div>
+        <h3>Q. 환불 정책은?</h3>
+        <p>A. 구매 후 24시간 이내 전액 환불 가능하며 이후 협의합니다.</p>
+      </div>
+      <div>
+        <h3>Q. 당첨 확인 방법</h3>
+        <p>A. 마이페이지에서 구매번호를 입력해 즉시 확인 가능합니다.</p>
+      </div>
+      <div>
+        <h3>Q. 고객센터 운영 시간</h3>
+        <p>A. 평일 09:00 - 18:00, 주말 및 공휴일 휴무.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">면책조항</a>
+      </div>
+      <div style="font-size:0.85rem; color: var(--text-secondary);">
+        &copy; 2025 로또스토리. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+    <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    navToggle.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
 </body>
 </html>
