@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>신뢰로 연결되는 로또 추천 – Wise 스타일 랜딩페이지</title>
+  <title>제1081회 1등 당첨자가 10년간 연구한 추천해주는 번호 받기 – 로또1081</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="진짜 1등 당첨자가 직접 추천하는 믿을 수 있는 로또 번호, Wise 스타일 웹페이지 데모">
+  <meta name="description" content="진짜 1등 당첨자가 10년간 연구한 추천번호. 신뢰와 데이터, 스토리로 연결되는 로또1081 공식 서비스">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap">
   <style>
     :root {
@@ -23,84 +23,178 @@
       font-family: 'Inter', 'Noto Sans KR', sans-serif;
       background: var(--wise-bg);
       color: var(--text-main);
+      font-size: 17px;
+      scroll-behavior: smooth;
     }
     header {
       background: #fff;
       border-bottom: 1.5px solid var(--wise-gray);
-      padding: 0 0;
+      padding: 0;
+      position: sticky; top: 0; z-index: 10;
     }
     .nav {
       max-width: 1020px; margin: 0 auto;
-      padding: 1.2rem 1.3rem 0.2rem 1.3rem;
+      padding: 1.2rem 1.3rem 0.6rem 1.3rem;
       display: flex; align-items: center; justify-content: space-between;
+      position: relative;
     }
     .nav-logo {
       display: flex; align-items: center; gap:0.7em;
-      font-weight: 700; font-size: 1.25rem; letter-spacing: -1px;
+      font-weight: 700; font-size: 1.22rem; letter-spacing: -1px;
       color: var(--wise-blue-dark);
     }
     .nav-logo .ball {
-      width: 38px; height: 38px;
+      width: 34px; height: 34px;
       background: linear-gradient(135deg, #00b6e6 60%, #3ecf8e 100%);
       border-radius: 50%;
       display: inline-block; position: relative;
       box-shadow: 0 2px 8px rgba(0,182,230,0.14);
     }
+    /* 햄버거 메뉴 */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--wise-blue-dark);
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    .nav-links {
+      display: flex; align-items: center;
+    }
     .nav-links a {
-      margin-left: 2.2em;
+      margin-left: 2em;
       color: var(--text-light); text-decoration: none; font-weight: 500;
       font-size: 1.04em;
       transition: color 0.17s;
+      padding: 0.2em 0.2em;
     }
     .nav-links a:hover { color: var(--wise-blue-dark);}
+    @media (max-width: 700px) {
+      .nav {
+        padding: 1rem 0.9rem 0.9rem 1rem;
+      }
+      .nav-logo .ball { width: 28px; height: 28px;}
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 120%;
+        right: 2%;
+        box-shadow: 0 6px 24px rgba(24,58,123,0.10);
+        border-radius: 14px;
+        min-width: 150px;
+        z-index: 100;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links a {
+        margin: 0.6em 0;
+        padding: 0.85em 1.3em;
+        font-size: 1.04em;
+        text-align: right;
+        border-radius: 8px;
+        width: 100%;
+        transition: background 0.15s, color 0.17s;
+      }
+      .nav-links a:hover { background: var(--wise-bg);}
+    }
+    /* 히어로 섹션 */
     .main-hero {
-      max-width: 950px; margin: 0 auto; padding: 3.5rem 1.2rem 2.5rem 1.2rem;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 2.4rem;
+      max-width: 950px; margin: 0 auto; padding: 2.1rem 0.6rem 1.7rem 0.6rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 1.8rem;
     }
     .hero-left {
-      flex: 1 1 320px; min-width: 280px;
+      flex: 1 1 320px; min-width: 220px;
     }
     .hero-title {
-      font-size: 2.45rem; font-weight: 700; line-height: 1.18;
+      font-size: 2rem; font-weight: 700; line-height: 1.22;
       letter-spacing: -2px;
       color: var(--wise-blue-dark);
-      margin-bottom: 0.7rem;
+      margin-bottom: 1.1rem;
+      word-break: keep-all;
     }
     .hero-desc {
-      font-size: 1.16rem;
+      font-size: 1.08rem;
       color: var(--text-light);
-      margin-bottom: 2rem;
+      margin-bottom: 2.1rem;
       line-height: 1.7;
+      word-break: keep-all;
+    }
+    .brand-badge {
+      display: inline-block;
+      background: #f5fff9;
+      color: var(--wise-blue-dark);
+      font-weight: 700;
+      font-size: 1.01rem;
+      padding: 0.32em 0.93em 0.32em 0.74em;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(62,207,142,0.13);
+      letter-spacing: 0.01em;
     }
     .cta-btn {
       display: inline-block;
       background: linear-gradient(90deg,#00b6e6 40%, #3ecf8e 90%);
       color: #fff;
       font-weight: 700;
-      padding: 1em 2.4em;
+      padding: 1em 2.2em;
       border: none;
       border-radius: 80px;
-      font-size: 1.16em;
+      font-size: 1.07em;
       box-shadow: 0 2px 12px rgba(62,207,142,0.10);
       cursor: pointer;
       transition: box-shadow 0.18s, transform 0.14s;
+      margin-right: 0.65em;
+      margin-bottom: 0.6em;
     }
+    .cta-btn:last-child { margin-right: 0;}
     .cta-btn:hover {
       box-shadow: 0 5px 24px rgba(0,182,230,0.17);
       transform: translateY(-2px) scale(1.04);
     }
     .hero-illust {
-      flex: 1 1 220px; min-width: 180px; text-align: center;
+      flex: 1 1 180px; min-width: 130px; text-align: center;
+      margin-top: 1.2em;
     }
     .hero-illust svg {
-      max-width: 270px; width: 95%;
+      max-width: 180px; width: 90%;
       margin: 0 auto;
+    }
+    @media (max-width: 700px) {
+      .main-hero {
+        flex-direction: column-reverse; gap: 1.5rem; padding: 1.2rem 0.3rem 0.6rem 0.3rem;
+      }
+      .hero-title { font-size: 1.32rem;}
+      .brand-badge { font-size: 0.97rem; }
+      .cta-btn { width: 100%; font-size: 1em; padding: 0.93em 0; }
+      .hero-illust svg { max-width: 145px; }
+    }
+    /* 스토리 강조 */
+    .story-section {
+      max-width: 760px;
+      margin: 0 auto 2.7rem auto;
+      padding: 2.1rem 0.6rem 1.1rem 0.6rem;
+      background: #fff;
+      border-radius: var(--wise-radius);
+      box-shadow: var(--wise-shadow);
+      font-size: 1.02rem;
+      line-height: 1.77;
+      color: var(--text-light);
+      text-align: center;
+      word-break: keep-all;
+    }
+    .story-section strong { color: var(--wise-blue-dark);}
+    @media (max-width: 700px) {
+      .story-section { padding: 1.15rem 0.5rem 0.7rem 0.5rem; font-size: 0.99rem;}
     }
     /* 서비스 섹션 */
     .section {
       max-width: 900px;
       margin: 0 auto 2.6rem auto;
-      padding: 2.7rem 1.1rem 1.3rem 1.1rem;
+      padding: 1.3rem 0.6rem 0.7rem 0.6rem;
       background: #fff;
       border-radius: var(--wise-radius);
       box-shadow: var(--wise-shadow);
@@ -108,63 +202,110 @@
     }
     .service-col {
       flex: 1 1 250px;
-      min-width: 220px;
+      min-width: 190px;
       margin-bottom: 1rem;
     }
     .service-title {
-      font-size: 1.18rem; font-weight: 600;
-      color: var(--wise-blue-dark); margin-bottom: 0.7rem;
-      display: flex; align-items: center; gap:0.45em;
+      font-size: 1.13rem; font-weight: 600;
+      color: var(--wise-blue-dark); margin-bottom: 0.57rem;
+      display: flex; align-items: center; gap:0.38em;
     }
     .service-title .dot {
-      display:inline-block;width:13px;height:13px;border-radius:50%;
-      background: var(--wise-blue); margin-right: 0.38em;
+      display:inline-block;width:11px;height:11px;border-radius:50%;
+      background: var(--wise-blue); margin-right: 0.32em;
     }
     .service-desc {
-      font-size: 1.04em; color: var(--text-light);
+      font-size: 0.98em; color: var(--text-light);
       line-height: 1.7;
       margin-bottom: 0.45em;
+      word-break: keep-all;
     }
+    @media (max-width: 700px) {
+      .section { flex-direction: column; gap:0.7rem; padding: 0.85rem 0.5rem 0.2rem 0.5rem;}
+      .service-col { min-width: 0; }
+    }
+    /* FAQ/문의안내 */
+    .faq-section {
+      max-width: 760px;
+      margin: 0 auto 2.5rem auto;
+      background: #fff;
+      border-radius: var(--wise-radius);
+      box-shadow: var(--wise-shadow);
+      padding: 1.5rem 0.9rem 0.7rem 0.9rem;
+      color: var(--text-main);
+    }
+    .faq-title {
+      font-weight: 700;
+      color: var(--wise-blue-dark);
+      margin-bottom: 1em;
+      font-size: 1.07rem;
+      letter-spacing: -1px;
+    }
+    .faq-list { margin: 0; padding: 0; list-style: none;}
+    .faq-q {
+      font-weight: 600; color: var(--wise-blue-dark);
+      margin-top: 1em;
+    }
+    .faq-a {
+      color: var(--text-light);
+      margin: 0.5em 0 0.7em 0;
+      font-size: 0.94em;
+      word-break: keep-all;
+    }
+    @media (max-width: 700px) {
+      .faq-section { padding: 1rem 0.5rem 0.5rem 0.5rem;}
+      .faq-title { font-size: 1.01rem;}
+      .faq-q { font-size: 1em;}
+    }
+    /* 후기 */
     .review-section {
       max-width: 900px; margin: 0 auto 2.5rem auto;
-      padding: 2rem 1rem 1.2rem 1rem;
+      padding: 1.2rem 0.4rem 1rem 0.4rem;
       background: var(--wise-bg);
       border-radius: var(--wise-radius);
     }
     .review-title {
-      color: var(--wise-blue-dark); font-size: 1.16rem; font-weight: 700; margin-bottom:1.2rem;
+      color: var(--wise-blue-dark); font-size: 1.08rem; font-weight: 700; margin-bottom:1.1rem;
     }
     .review-list {
-      display: flex; gap: 1.3rem; flex-wrap: wrap;
+      display: flex; gap: 1.1rem; flex-wrap: wrap;
     }
     .review-item {
       background: #fff; border-radius: 11px; box-shadow: 0 2px 14px rgba(0,182,230,0.08);
-      padding: 1rem 1.15rem; color: var(--wise-blue-dark);
-      font-size: 1em; flex: 1 1 240px; min-width: 180px;
+      padding: 1rem 1.08rem; color: var(--wise-blue-dark);
+      font-size: 0.97em; flex: 1 1 180px; min-width: 135px; max-width: 320px;
       position: relative;
+      margin-bottom: 0.7em;
+      word-break: keep-all;
     }
     .review-item .q {
-      font-size:1.28em; color:var(--wise-blue); margin-right:0.35em;
+      font-size:1.18em; color:var(--wise-blue); margin-right:0.25em;
     }
+    @media (max-width: 700px) {
+      .review-section { padding: 0.8rem 0.2rem 0.3rem 0.2rem;}
+      .review-list { flex-direction:column; gap:0.5rem;}
+      .review-item { max-width: 100%; font-size: 0.97em;}
+    }
+    /* 푸터 */
     footer {
       background: #fff;
       border-top: 1.5px solid var(--wise-gray);
-      margin-top: 2.5rem;
-      padding: 2rem 0 1.1rem 0;
+      margin-top: 2.2rem;
+      padding: 1.5rem 0 1rem 0;
       text-align: center;
       color: var(--text-light);
-      font-size: 0.99rem;
+      font-size: 0.97rem;
+      word-break: keep-all;
     }
     .footer-links a {
-      color: var(--wise-blue-dark); margin: 0 0.8em;
+      color: var(--wise-blue-dark); margin: 0 0.5em;
       text-decoration: none; font-weight: 500;
-      font-size: 1.05em;
+      font-size: 1.01em;
     }
     .footer-links a:hover { text-decoration: underline;}
-    @media (max-width:800px) {
-      .main-hero { flex-direction: column-reverse; gap:2rem; padding-top:2.2rem;}
-      .section {flex-direction:column;gap:0;}
-      .review-list {flex-direction:column; gap:0.7rem;}
+    @media (max-width: 700px) {
+      footer { padding: 1rem 0 0.8rem 0; font-size: 0.93rem;}
+      .footer-links a { margin: 0 0.28em;}
     }
   </style>
 </head>
@@ -173,12 +314,15 @@
     <nav class="nav">
       <span class="nav-logo">
         <span class="ball"></span>
-        Lotto Wise
+        로또1081
       </span>
+      <button class="nav-toggle" aria-label="메뉴 열기" onclick="document.querySelector('.nav-links').classList.toggle('active');this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true');">
+        &#9776;
+      </button>
       <span class="nav-links">
         <a href="#">서비스 소개</a>
         <a href="#">후기</a>
-        <a href="#">문의</a>
+        <a href="#">고객센터</a>
         <a href="#">로그인</a>
       </span>
     </nav>
@@ -187,6 +331,9 @@
     <!-- Hero Section -->
     <section class="main-hero">
       <div class="hero-left">
+        <div class="brand-badge">
+          제1081회 1등 당첨자가 10년간 연구한 추천해주는 번호 받기
+        </div>
         <div class="hero-title">
           신뢰의 데이터,<br>
           <span style="color:var(--wise-blue)">진짜 1등 당첨자</span>가 직접 추천
@@ -196,7 +343,8 @@
           과학적으로 추천된 번호로<br>
           희망과 가능성을 시작하세요.
         </div>
-        <button class="cta-btn" onclick="alert('유료 추천번호 신청은 실제 연동 필요!')">유료 추천번호 받기</button>
+        <button class="cta-btn" onclick="alert('추천번호 신청은 실제 연동 필요!')">추천번호 받기</button>
+        <button class="cta-btn" style="background:#fff;color:var(--wise-blue-dark);border:1.5px solid var(--wise-blue-dark);" onclick="alert('당첨 확인은 실제 연동 필요!')">당첨 확인하기</button>
       </div>
       <div class="hero-illust">
         <!-- Simple Lotto Ball SVG with Crown (Wise 스타일) -->
@@ -220,6 +368,14 @@
         </svg>
       </div>
     </section>
+    <!-- 스토리 강조 -->
+    <section class="story-section">
+      <strong>“단순한 운이 아니라 데이터와 노하우의 결과입니다.”</strong><br><br>
+      로또1081은 <b style="color:var(--wise-blue-dark);">진짜 1등 당첨자</b>가<br>
+      10년간의 연구와 통계적 분석을 바탕으로<br>
+      고객님께 <b style="color:var(--wise-accent);font-weight:600;">신뢰할 수 있는 번호 추천</b>을 제공합니다.<br><br>
+      한 주의 희망과 가능성을 저희와 함께 시작해보세요.
+    </section>
     <!-- 서비스 안내 -->
     <section class="section">
       <div class="service-col">
@@ -233,33 +389,51 @@
       <div class="service-col">
         <div class="service-title"><span class="dot"></span>실시간 당첨 확인</div>
         <div class="service-desc">
-          구매하신 번호는<br>
+          추천번호로 로또를 구매한 후,<br>
           마이페이지에서 토요일 저녁 바로<br>
-          당첨 여부를 확인할 수 있습니다.
+          당첨 여부를 안전하게 확인할 수 있습니다.
         </div>
       </div>
       <div class="service-col">
         <div class="service-title"><span class="dot"></span>고객 후기/신뢰</div>
         <div class="service-desc">
-          실제 당첨 고객과 이용자의 솔직한 후기,<br>
+          실제 이용 고객의 솔직한 후기,<br>
           감성적인 스토리와 데이터 신뢰성까지
         </div>
       </div>
+    </section>
+    <!-- FAQ/문의 안내 -->
+    <section class="faq-section">
+      <div class="faq-title">자주 묻는 질문 & 문의 안내</div>
+      <ul class="faq-list">
+        <li>
+          <div class="faq-q">Q. 서비스 운영자는 누구인가요?</div>
+          <div class="faq-a">로또1081은 대표자 실명을 공개하지 않으며, ‘제1081회 1등 당첨자’가 실제로 운영하는 서비스입니다. <br>사이트 하단에도 실명 대신 <b>운영자: 로또1081 운영팀</b>으로 표기합니다.</div>
+        </li>
+        <li>
+          <div class="faq-q">Q. 전화번호, 이메일로 문의할 수 있나요?</div>
+          <div class="faq-a">고객의 신뢰와 개인정보 보호를 위해 대표 전화번호 및 이메일은 노출하지 않습니다.<br>모든 문의 및 비즈니스 요청은 <b>고객센터 게시판/문의창</b>을 이용해주세요.</div>
+        </li>
+        <li>
+          <div class="faq-q">Q. 서비스 이름과 도메인은 무엇인가요?</div>
+          <div class="faq-a">공식 서비스명은 <b>‘제1081회 1등 당첨자가 10년간 연구한 추천해주는 번호 받기’</b>이며,<br>내부 및 도메인 식별용으로는 <b>‘로또1081’</b>이 사용됩니다.</div>
+        </li>
+      </ul>
     </section>
     <!-- 후기 -->
     <section class="review-section">
       <div class="review-title">실제 이용자 후기</div>
       <div class="review-list">
-        <div class="review-item"><span class="q">“</span>매번 번호 고민 안 하고 과학적으로 추천받으니 믿음이 가네요. (김**)</div>
-        <div class="review-item"><span class="q">“</span>진짜 1등 당첨자가 직접 알려주니 신뢰가 남다릅니다. (박**)</div>
-        <div class="review-item"><span class="q">“</span>결제도 편하고, 당첨 여부도 쉽게 확인할 수 있어 좋아요. (이**)</div>
+        <div class="review-item"><span class="q">“</span>추천번호의 신뢰도가 확실히 다르고, 결과 확인까지 깔끔합니다. (김**)</div>
+        <div class="review-item"><span class="q">“</span>실명 대신 운영팀이 관리해 더 믿음이 갑니다. (박**)</div>
+        <div class="review-item"><span class="q">“</span>고객센터 문의가 간편하고, 개인정보가 안전해서 좋았어요. (이**)</div>
       </div>
     </section>
   </main>
   <footer>
     <div>
-      &copy; 2025 Lotto Wise<br>
-      사업자: 프라임 파트너스(359-11-03128) ｜ 대표 송승오<br>
+      &copy; 2025 로또1081<br>
+      사업자: 프라임 파트너스(359-11-03128) ｜ <b>운영자: 로또1081 운영팀</b><br>
       <span class="footer-links">
         <a href="#">이용약관</a>
         <a href="#">개인정보처리방침</a>
@@ -267,8 +441,24 @@
       </span>
     </div>
     <div style="margin-top:0.7em;font-size:0.95em;">
-      Powered by Firebase ｜ 크몽 안전결제 적용
+      Powered by Firebase ｜ 크몽 안전결제 적용<br>
+      ※ 대표자 실명, 전화번호, 이메일은 고객 개인정보 보호와 신뢰 원칙상 공개하지 않습니다.
     </div>
   </footer>
+  <script>
+    // 모바일 햄버거 메뉴 동작
+    document.querySelector('.nav-toggle').addEventListener('click', function(e) {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+    // 메뉴 바깥 클릭 시 닫기
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('.nav');
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
